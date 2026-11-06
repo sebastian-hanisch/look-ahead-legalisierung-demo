@@ -33,7 +33,7 @@ def test_loop_verdict_changed_unchanged_and_worse():
     assert "Untere Länge 20 → 31, Lücke zwischen oberen Kosten und unterer Länge 67 % → 44 %" in text
     same = _loop([60, 60, 60, 60], [20, 24, 28, 31])
     k2, t2 = ev.verdict_loop(s, _v(same))
-    assert k2 == "info" and "**bleibt bis zur letzten Runde gleich**" in t2 and "die Pseudo-Anker halten sie fest" in t2
+    assert k2 == "info" and "**bleibt bis zur letzten Runde gleich**" in t2 and "halten sie fest" not in t2
     worse = _loop([55, 55, 60, 60], [20, 24, 28, 31], [[0, 1, 2], [0, 1, 2], [1, 0, 2], [1, 0, 2]])
     k3, t3 = ev.verdict_loop(s, _v(worse))
     assert k3 == "warning" and "steigen von 55 (Lücke 10,0 %) auf 60 (Lücke 20,0 %)" in t3
@@ -44,7 +44,7 @@ def test_converge_and_legalizer_verdicts():
     s = ev.Settings(rounds=3)
     lp = _loop([60, 60, 55, 55], [20, 24, 28, 31], [[0, 1, 2], [0, 1, 2], [1, 0, 2], [1, 0, 2]])
     kind, text = ev.verdict_converge(s, _v(lp))
-    assert kind == "info" and "steigt in jeder Runde (20 → 31)" in text and "(60 → 55)" in text and "sinkt von 67 % auf 44 %" in text and "Ankergewicht auf 1,2 wächst" in text and "nicht weil die Anordnung besser wird" in text
+    assert kind == "info" and "steigt in jeder Runde (20 → 31)" in text and "(60 → 55)" in text and "sinkt von 67 % auf 44 %" in text and "Ankergewicht auf 1,2 wächst" in text and "eine bessere Anordnung trägt nur bei, wenn sich die Anordnung ändert" in text
     bad = _loop([60, 60, 55, 55], [20, 24, 22, 31])
     assert "steigt nicht in jeder Runde" in ev.verdict_converge(s, _v(bad))[1]
     other = _loop([55, 55, 55, 55], [20, 24, 28, 31], leg="bisect")

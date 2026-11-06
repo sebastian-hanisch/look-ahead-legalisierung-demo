@@ -84,7 +84,7 @@ PRESETS = {
 PRESET_HELP = {
     "Standardfall: Zwei Cluster, Zuordnung": "Zwei Gruppen von Bauteilen (Familie aus Stück 2) mit acht Bauteilen, vier Pads, 15 Runden, Pseudo-Anker mit c = 0,2 und zwei Umgewichtungen je Runde; Legalisierer: Zuordnung.",
     "Rekursive Zweiteilung": "Derselbe Fall mit der Zweiteilung als Legalisierer: sie erhält die Reihenfolge der Bauteile entlang der Achsen.",
-    "Ohne Umgewichtung": "Ohne Umgewichtung je Runde ändert die Schleife die Anordnung kaum: die Anker halten die erste Rundung fest.",
+    "Ohne Umgewichtung": "Ohne Umgewichtung je Runde bleibt die erste Rundung in den meisten Instanzen erhalten.",
     "Schwache Anker": "Das Ankergewicht wächst langsam (c = 0,02): die untere Länge nähert sich den oberen Kosten kaum.",
     "Starke Anker": "Das Ankergewicht wächst schnell (c = 1): die Bauteile sitzen nach wenigen Runden auf ihren Plätzen.",
     "Zwei Pads": "Nur zwei feste Pads: die erste Rundung ist am schlechtesten, die Schleife gewinnt am meisten.",

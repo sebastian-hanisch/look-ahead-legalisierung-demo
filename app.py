@@ -109,7 +109,7 @@ with st.expander("So funktioniert es", expanded=True):
 1. **Runde 0:** die quadratische Platzierung aus Stück 9 (lineares System je Achse mit den festen Pads, `0` oder `2` Umgewichtungen), dann die Legalisierung auf die Plätze.
 2. **Runde t:** jedes Bauteil bekommt einen **Pseudo-Anker** an seinem Platz der Vorrunde mit dem Gewicht `λ_t = c · Grundgewicht · t`; das System wird mit den zusätzlichen Gliedern `λ_t · (x − Platz)²` neu gelöst und wieder legalisiert.
 3. **Untere Länge, obere Kosten:** die lineare Länge der stetigen Lösung (ohne Pseudo-Anker) und die Kosten der legalen Anordnung. Beide sind **Näherungen**; die echte untere Schranke (das Minimum der linearen Länge über alle reellen Orte) liegt weit unter dem Optimum (siehe README).
-4. **Warum nähern sich beide an?** Je größer `λ_t`, desto näher liegen die stetigen Orte an den Plätzen, also steigt die untere Länge zu den oberen Kosten: **das ist das Ankergewicht, nicht die Qualität der Anordnung.** Ob die Anordnung besser wird, zeigt die Lücke zum Vergleichswert.
+4. **Warum nähern sich beide an?** Je größer `λ_t`, desto näher liegen die stetigen Orte an den Plätzen, also steigt die untere Länge zu den oberen Kosten: **das ist vor allem das Ankergewicht, nicht die Qualität der Anordnung.** Ob die Anordnung besser wird, zeigt die Lücke zum Vergleichswert.
 5. **Die Lücke:** (Kosten − Vergleichswert) / Vergleichswert; bis n = 9 ist der Vergleichswert das aufgezählte Optimum, ab n = 12 die beste von 100 steilsten Abstiegen (obere Grenze der Lücke).
 6. **Feste Instanzen:** Vergleiche laufen über feste Seeds (n = 8: 20 Instanzen je Familie, n = 12: 5), nie über einen einzelnen.
         """

@@ -199,7 +199,7 @@ def verdict_loop(s: Settings, v: dict):
     kind = "success" if rT.upper < r0.upper - 1e-9 else "info"
     head = f"{_head(s, v)}, Legalisierer {C.LEGALIZER_NAMES[s.legalizer]}, {s.rounds} Runden, c = {anchor_text(s.anchor)}, {s.reweights} Umgewichtungen je Runde"
     if not lp.changed:
-        return "info", (f"{head}: die Anordnung der Runde 0 (Kosten {num(r0.upper)}, Lücke {pct(g0, 1)} gegen {_refname(v)} {num(v['ref'])}) **bleibt bis zur letzten Runde gleich**; die Pseudo-Anker halten sie fest. "
+        return "info", (f"{head}: die Anordnung der Runde 0 (Kosten {num(r0.upper)}, Lücke {pct(g0, 1)} gegen {_refname(v)} {num(v['ref'])}) **bleibt bis zur letzten Runde gleich**. "
                         f"Untere Länge {num(r0.lower)} → {num(rT.lower)}, Lücke zwischen oberen Kosten und unterer Länge {pct(lu_gap(r0.upper, r0.lower))} → {pct(lu_gap(rT.upper, rT.lower))}.")
     txt = (f"{head}: die Anordnung ändert sich in {runden(lp.changes)} (zuletzt in Runde {lp.last_change}); die Kosten sinken von {num(r0.upper)} (Lücke {pct(g0, 1)}) auf {num(rT.upper)} (Lücke {pct(gT, 1)}) gegen {_refname(v)} {num(v['ref'])}"
            if rT.upper < r0.upper - 1e-9 else f"{head}: die Anordnung ändert sich in {runden(lp.changes)} (zuletzt in Runde {lp.last_change}); die Kosten steigen von {num(r0.upper)} (Lücke {pct(g0, 1)}) auf {num(rT.upper)} (Lücke {pct(gT, 1)}) gegen {_refname(v)} {num(v['ref'])}")
@@ -212,7 +212,7 @@ def verdict_converge(s: Settings, v: dict):
     r0, rT = lp.rounds[0], lp.rounds[-1]
     mono = all(lp.rounds[i + 1].lower >= lp.rounds[i].lower - 1e-9 for i in range(len(lp.rounds) - 1))
     return "info", (f"Die untere Länge {'steigt in jeder Runde' if mono else 'steigt nicht in jeder Runde'} ({num(r0.lower)} → {num(rT.lower)}), die oberen Kosten ändern sich nur, wenn sich die Anordnung ändert ({num(r0.upper)} → {num(rT.upper)}): "
-                    f"die Lücke zwischen beiden sinkt von {pct(lu_gap(r0.upper, r0.lower))} auf {pct(lu_gap(rT.upper, rT.lower))}, **weil das Ankergewicht auf {de(rT.lam, 1)} wächst und die Bauteile an ihre Plätze zieht**, nicht weil die Anordnung besser wird. "
+                    f"die Lücke zwischen beiden sinkt von {pct(lu_gap(r0.upper, r0.lower))} auf {pct(lu_gap(rT.upper, rT.lower))}, **weil das Ankergewicht auf {de(rT.lam, 1)} wächst und die Bauteile an ihre Plätze zieht**; eine bessere Anordnung trägt nur bei, wenn sich die Anordnung ändert. "
                     f"Echte untere Schranke für diese Pads: das Minimum der linearen Länge über alle reellen Orte; sie liegt in den Messungen weit unter dem Optimum (README).")
 
 
@@ -227,7 +227,7 @@ def verdict_legalizers(s: Settings, v: dict):
 
 def verdict_anchor(s: Settings, curve: list):
     txt = "; ".join(f"c = {anchor_text(c['anchor'])}: Lücke {pct(c['gap0'], 1)} → {pct(c['gapT'], 1)}, {c['changes']} Änderungen, Lücke oben/unten {pct(c['lu0'])} → {pct(c['luT'])}" for c in curve)
-    return "info", f"Gleiche Instanz, {C.LEGALIZER_NAMES[s.legalizer]}, {s.rounds} Runden, Ankergewicht λ_t = c · Grundgewicht · t: {txt}. Starke Anker nähern die beiden Werte schnell an und halten die erste Anordnung fest; schwache lassen sie weit auseinander."
+    return "info", f"Gleiche Instanz, {C.LEGALIZER_NAMES[s.legalizer]}, {s.rounds} Runden, Ankergewicht λ_t = c · Grundgewicht · t: {txt}. Starke Anker nähern die beiden Werte schnell an, schwache lassen sie weit auseinander; ob die Anordnung gleich bleibt, hängt von Instanz und Umgewichtung ab."
 
 
 def verdict_reweight(s: Settings, pair: list):
