@@ -1,9 +1,8 @@
 # Look-ahead-Legalisierung – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-look-ahead-legalisierung-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-look-ahead-legalisierung-demo.streamlit.app/)**
 
-Stück 10 von 15 der **Konzepte-Reihe „Anordnen: relaxieren und runden“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“ (die Konzepte-Seite der Reihe gibt es noch nicht). [Stück 9, Quadratische Platzierung](https://github.com/sebastian-hanisch/quadratische-platzierung-demo), hat die Bauteile an beliebigen Punkten platziert und **einmal** auf die Plätze gerundet. Dieses Stück bindet die Rundung **in einer Schleife** an die Platzierung zurück (Kante der Reihe: *fix*, in der Art von SimPL): Runde für Runde legalisiert eine Zuordnung oder eine rekursive Zweiteilung die Bauteile auf Plätze, und die nächste Platzierung hängt jedes Bauteil mit **wachsendem Gewicht** an seinen Platz. Gefragt ist: wie weit liegen die **untere Länge** der stetigen Platzierung und die **oberen Kosten** der legalen Anordnung auseinander, und bringt die Schleife etwas?
+Stück 10 von 15 der **Konzepte-Reihe „Anordnen: relaxieren und runden“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“ (die [Konzepte-Seite der Reihe](https://sebastianhanisch.net/konzepte-anordnen.html)). [Stück 9, Quadratische Platzierung](https://github.com/sebastian-hanisch/quadratische-platzierung-demo), hat die Bauteile an beliebigen Punkten platziert und **einmal** auf die Plätze gerundet. Dieses Stück bindet die Rundung **in einer Schleife** an die Platzierung zurück (Kante der Reihe: *fix*, in der Art von SimPL): Runde für Runde legalisiert eine Zuordnung oder eine rekursive Zweiteilung die Bauteile auf Plätze, und die nächste Platzierung hängt jedes Bauteil mit **wachsendem Gewicht** an seinen Platz. Gefragt ist: wie weit liegen die **untere Länge** der stetigen Platzierung und die **oberen Kosten** der legalen Anordnung auseinander, und bringt die Schleife etwas?
 
 ## Warum dieses Problem
 
